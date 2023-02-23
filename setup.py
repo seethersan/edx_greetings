@@ -107,7 +107,7 @@ setup(
     long_description=README + '\n\n' + CHANGELOG,
     author='edX',
     author_email='oscm@edx.org',
-    url='https://github.com/openedx/greetings',
+    url='https://github.com/seethersan/edx_greetings',
     packages=find_packages(
         include=['greetings', 'greetings.*'],
         exclude=["*tests"],
@@ -129,4 +129,12 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
     ],
+    entry_points={
+        # IMPORTANT: ensure that this entry_points coincides with that of edx-platform
+        #            and also that you are not introducing any name collisions.
+        # https://github.com/edx/edx-platform/blob/master/setup.py#L88
+        "lms.djangoapp": [
+            "greetings = greetings.apps:GreetingsConfig",
+        ],
+    },
 )
