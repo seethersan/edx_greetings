@@ -2,7 +2,7 @@ import logging
 import requests
 
 
-from django.shortcuts import reverse
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
