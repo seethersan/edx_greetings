@@ -10,4 +10,4 @@ from .models import Greetings
 class GreetingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Greetings
-        fields = ('message')
+        fields = "__all__"
