@@ -29,11 +29,11 @@ class GreetingsViewSet(DeveloperErrorViewMixin, ModelViewSet):
         Create a new Greetings instance.
         """
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)        
-        LOGGER.info(serializer.data["message"])        
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-        if serializer.data["message"] == "Hello":
-            url = reverse('greetings')
-            user = request.user
-            response = requests.post(url, data = {'message': 'goodbye'})
+        LOGGER.info(serializer.validated_data["message"])
+        if serializer.validated_data["message"] == "hello":
+            url = request.build_absolute_uri(reverse('greetings:greetings-list'))
+            response = requests.post(url, data = {'message': 'goodbye'}, headers={"Authorization": f"Bearer {str(request.auth)}"})
+            return Response(response.json(), status=status.HTTP_200_OK)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
