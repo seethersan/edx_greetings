@@ -22,4 +22,4 @@ class Greetings(TimeStampedModel):
         Get a string representation of this model instance.
         """
         # TODO: return a string appropriate for the data fields
-        return '<greetings, ID: {}>'.format(self.id)
+        return self.message
